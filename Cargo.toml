@@ -2,6 +2,12 @@
 name = "async-graphql-logger"
 version = "0.1.0"
 edition = "2021"
+license = "MIT"
+repository = "https://github.com/kurotych/async-graphql-logger"
+keywords = ["gql", "logger", "async-graphql"]
+description = "Minimalistic logger extension for async-graphql library"
+readme = "README.md"
+authors = ["Anatolii Kurotych <akurotych@gmail.com>"]
 
 [dependencies]
 async-graphql = "7.0.1"
