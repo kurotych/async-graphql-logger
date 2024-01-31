@@ -24,14 +24,12 @@ impl QueryRoot {
         Ok(true)
     }
 }
-pub type CasSchema = Schema<QueryRoot, EmptyMutation, EmptySubscription>;
-
 async fn graphql_playground() -> impl IntoResponse {
     response::Html(playground_source(GraphQLPlaygroundConfig::new("/api")))
 }
 
 async fn graphql_handler(
-    schema: Extension<CasSchema>,
+    schema: Extension<Schema<QueryRoot, EmptyMutation, EmptySubscription>>,
     _headers: HeaderMap,
     req: GraphQLRequest,
 ) -> GraphQLResponse {
@@ -56,5 +54,8 @@ async fn main() {
 
     let addr = SocketAddr::from(([127, 0, 0, 1], 8888));
     println!("Running http://127.0.0.1:8888/api");
-    axum_server::bind(addr).serve(app.into_make_service()).await.unwrap();
+    axum_server::bind(addr)
+        .serve(app.into_make_service())
+        .await
+        .unwrap();
 }
