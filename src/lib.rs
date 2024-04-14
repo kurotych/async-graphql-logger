@@ -121,6 +121,8 @@ impl Extension for LoggerExtension {
             }
             let query_start_time = qinfo.start_time;
             let duration = Utc::now() - query_start_time;
+            log::debug!(target: "gql_logger",
+                        "[QueryID: {query_id}] Response: {}", resp.data);
             log::info!(
                 target: "gql_logger",
                 "[QueryID: {query_id}] Duration: {}ms",
